@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { FallingLines } from "react-loader-spinner";
-import { AuthContext } from "../providers/AuthProvider";
+import { AuthContext } from "./AuthProvider";
 
 const PrivateRoute = ({children}) => {
 
@@ -9,12 +8,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
 
     if(loading){
-        return <FallingLines
-        color="#4fa94d"
-        width="100"
-        visible={true}
-        ariaLabel='falling-lines-loading'
-      />
+       return <span className="loading loading-bars loading-lg"></span>
     }
 
     if(user){

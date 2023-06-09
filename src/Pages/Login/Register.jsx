@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const {createUser} = useContext(AuthContext);
@@ -12,6 +13,24 @@ const Register = () => {
         console.log(data)
         createUser(data.email, data.password)
         .then(result => {
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Registered successfully'
+              })
+
             const loggedUser = result.user
             console.log(loggedUser)
             reset();
