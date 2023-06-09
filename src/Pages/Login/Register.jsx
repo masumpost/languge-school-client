@@ -7,6 +7,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const {createUser} = useContext(AuthContext);
 
+
     const onSubmit = data => {
         console.log(data)
         createUser(data.email, data.password)
@@ -16,7 +17,7 @@ const Register = () => {
             reset();
         })
         .catch(error => {console.log(error)})
-        // reset()
+    
     };
 
     return (
