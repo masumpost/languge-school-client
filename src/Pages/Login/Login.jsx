@@ -28,9 +28,9 @@ const Login = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <input className="btn btn-primary" type="submit" value="Login" />
                             </div>
-                            <p>Already Have Account? <span><Link to='/register'>Register</Link></span></p>
+                            <p>New in language School? <span><Link to='/register'>Register</Link></span></p>
                         </form>
                     </div>
                 </div>
