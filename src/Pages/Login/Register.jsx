@@ -1,39 +1,35 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {createUser} = useContext(AuthContext);
-
+    const {createUser , updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = data => {
         console.log(data)
         createUser(data.email, data.password)
         .then(result => {
-
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-right',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              
-              Toast.fire({
-                icon: 'success',
-                title: 'Registered successfully'
-              })
-
             const loggedUser = result.user
             console.log(loggedUser)
-            reset();
+            updateUserProfile(data.name, data.photoURL)
+            .then(() => {
+                console.log('user profile updated')
+                reset();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'User created successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  navigate('/')
+            })
+            .catch(error => console.log(error))
+            
         })
         .catch(error => {console.log(error)})
     
@@ -57,7 +53,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" placeholder="name" className="input input-bordered" />
+                                <input type="text" placeholder="name" className="input input-bordered" {...register("name")}/>
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -87,9 +83,18 @@ const Register = () => {
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered" />
                             </div>
-                            <div className="form-control mt-2">
-                                <input type="file" {...register("file")} className="file-input file-input-ghost w-full max-w-xs" />
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo URL</span>
+                                </label>
+                                <input type="text" placeholder="Photo URL" className="input input-bordered" {...register("photoURL")} />
                             </div>
+                            {/* <div className="form-control mt-2">
+                            <label className="label">
+                                    <span className="label-text">Photo</span>
+                                </label>
+                                <input type="file" {...register("photo")} className="file-input file-input-ghost w-full max-w-xs" />
+                            </div> */}
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Register" />
                             </div>

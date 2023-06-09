@@ -42,7 +42,14 @@ const Navbar = () => {
 
                     {
                         user ?
-                            <><Link onClick={handelLogOut} className="btn btn-primary btn-md">LogOut</Link></>
+                            <>
+                                <span className="items-center"><div className="avatar mx-2">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user?.photoURL} />
+                                    </div>
+                                </div></span>
+                                <Link onClick={handelLogOut} className="btn btn-primary btn-md">LogOut</Link>
+                            </>
                             :
                             <><Link to="/login" className="btn btn-primary btn-md">Login</Link></>
                     }
