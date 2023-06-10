@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import TeachersCard from "../../components/TeachersCard";
+import { Link } from "react-router-dom";
 
 const PopularTeacher = () => {
 
@@ -23,7 +24,7 @@ const PopularTeacher = () => {
                 }
             </div>
             <div className="text-center">
-                <button className="btn btn-primary my-5">See All Instructors</button>
+                <button className="btn btn-primary my-5"><Link to='/instructors'>See All Instructors</Link></button>
             </div>
         </div>
     );
