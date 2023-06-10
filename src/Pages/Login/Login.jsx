@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/socialLogin/SocialLogin";
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -75,6 +76,7 @@ const Login = () => {
                                 <input className="btn btn-primary" type="submit" value="Login" />
                             </div>
                             <p>New in language School? <span><Link to='/register'>Register</Link></span></p>
+                            <SocialLogin></SocialLogin>
                         </form>
                     </div>
                 </div>
