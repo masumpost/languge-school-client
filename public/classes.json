@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "image": "https://ibb.co/qyh6CWk",
+        "name": "English Language Course",
+        "instructor": "John Smith",
+        "available_seats": 10,
+        "price": 99.99
+    },
+    {
+        "id": 2,
+        "image": "https://ibb.co/sCHKmMT",
+        "name": "Japanese Language Course",
+        "instructor": "Yuko Tanaka",
+        "available_seats": 12,
+        "price": 129.99
+    },
+    {
+        "id": 3,
+        "image": "https://ibb.co/48WzZq9",
+        "name": "Chinese Language Course",
+        "instructor": "Li Wei",
+        "available_seats": 15,
+        "price": 149.99
+    },
+    {
+        "id": 4,
+        "image": "https://ibb.co/PzThJs6",
+        "name": "Spanish Language Course",
+        "instructor": "Maria Rodriguez",
+        "available_seats": 8,
+        "price": 199.99
+    },
+    {
+        "id": 5,
+        "image": "https://ibb.co/ZhcypjQ",
+        "name": "French Language Course",
+        "instructor": "Sophie Martin",
+        "available_seats": 10,
+        "price": 179.99
+    },
+    {
+        "id": 6,
+        "image": "https://ibb.co/KLQnp0w",
+        "name": "German Language Course",
+        "instructor": "Hans Müller",
+        "available_seats": 15,
+        "price": 199.99
+    }
+]
