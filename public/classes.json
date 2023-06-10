@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "image": "https://ibb.co/qyh6CWk",
+        "image": "https://i.ibb.co/p0NqQRJ/english.jpg",
         "name": "English Language Course",
         "instructor": "John Smith",
         "available_seats": 10,
@@ -9,7 +9,7 @@
     },
     {
         "id": 2,
-        "image": "https://ibb.co/sCHKmMT",
+        "image": "https://i.ibb.co/XD872vn/japanese.jpg",
         "name": "Japanese Language Course",
         "instructor": "Yuko Tanaka",
         "available_seats": 12,
@@ -17,7 +17,7 @@
     },
     {
         "id": 3,
-        "image": "https://ibb.co/48WzZq9",
+        "image": "https://i.ibb.co/fkMfYgB/chinese.png",
         "name": "Chinese Language Course",
         "instructor": "Li Wei",
         "available_seats": 15,
@@ -25,7 +25,7 @@
     },
     {
         "id": 4,
-        "image": "https://ibb.co/PzThJs6",
+        "image": "https://i.ibb.co/YTDkJ4L/spanish.jpg",
         "name": "Spanish Language Course",
         "instructor": "Maria Rodriguez",
         "available_seats": 8,
@@ -33,7 +33,7 @@
     },
     {
         "id": 5,
-        "image": "https://ibb.co/ZhcypjQ",
+        "image": "https://i.ibb.co/dQknwTN/french.jpg",
         "name": "French Language Course",
         "instructor": "Sophie Martin",
         "available_seats": 10,
@@ -41,7 +41,7 @@
     },
     {
         "id": 6,
-        "image": "https://ibb.co/KLQnp0w",
+        "image": "https://i.ibb.co/b2ytMWJ/german.jpg",
         "name": "German Language Course",
         "instructor": "Hans Müller",
         "available_seats": 15,
