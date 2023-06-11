@@ -5,6 +5,8 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/socialLogin/SocialLogin";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -13,6 +15,8 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
+
+    const [visible, setVisible] = useState(true);
 
     const onSubmit = data => {
         console.log(data)
@@ -63,14 +67,17 @@ const Login = () => {
                                 </label>
                                 <input type="email" placeholder="email" className="input input-bordered" {...register("email")}/>
                             </div>
-                            <div className="form-control">
+                            <div className="form-control relative">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password" className="input input-bordered" {...register("password")}/>
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                                <input
+                                type={visible ? 'text' : 'password'}
+                                placeholder="password"
+                                className="input input-bordered" {...register("password")}/>
+                                <div onClick={()=> setVisible(!visible)} className="p-2 absolute bottom-2 right-0">
+                                    {visible? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
+                                </div>
                             </div>
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Login" />

@@ -4,10 +4,14 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const {createUser , updateUserProfile} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [visible, setVisible] = useState(false);
+    const [cVisible, setCVisible] = useState(false);
 
     const onSubmit = data => {
         console.log(data)
@@ -66,22 +70,31 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" {...register("password", {
+                                <input
+                                    type={visible ? 'text' : 'password'} 
+                                    {...register("password", {
                                     required: true,
                                     minLength: 6,
                                     maxLength: 20,
                                     pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/})} 
                                 placeholder="password" className="input input-bordered" />
+                              
                                 {errors.password?.type === 'required' && <p className="text-red-600 my-2">Password is required</p>}
                                 {errors.password?.type === 'minLength' && <p className="text-red-600 my-2">Password must be 6 character</p>}
                                 {errors.password?.type === 'maxLength' && <p className="text-red-600 my-2">Password must not be 20 character</p>}
                                 {errors.password?.type === 'pattern' && <p className="text-red-600 my-2">Password must have one uppercase and one special character</p>}
+                                <div onClick={()=> setVisible(!visible)} className="pt-12 absolute right-10">
+                                    {visible? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
+                                </div>
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type="password" placeholder="password" className="input input-bordered" />
+                                <input type={cVisible ?"text" :"password"} placeholder="password" className="input input-bordered" />
+                                <div onClick={()=> setCVisible(!cVisible)} className="pt-12 absolute right-10">
+                                    {visible? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
+                                </div>
                             </div>
                             <div className="form-control">
                                 <label className="label">
