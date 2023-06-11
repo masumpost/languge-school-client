@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
+import TeachersCard from "../../components/TeachersCard";
 
 const Instructors = () => {
+    const [teachers, setTeachers] = useState([]);
+
+    useEffect(()=> {
+        fetch('teachers.json')
+        .then(res => res.json())
+        .then(data =>setTeachers(data));
+    },[])
     return (
-        <div>
-            This is instructors page
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 my-8">
+            {
+                teachers.map(teacher => <TeachersCard
+                key={teacher.id}
+                teacher={teacher}
+                ></TeachersCard>)
+            }
         </div>
     );
 };
