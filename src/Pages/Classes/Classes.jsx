@@ -7,7 +7,7 @@ const Classes = () => {
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        fetch('classes.json')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => setClasses(data))
     }, [])
@@ -19,7 +19,7 @@ const Classes = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8 p-4">
                 {
                     classes.map(item => <ClassCard
-                        key={item.id}
+                        key={item._id}
                         item={item}
                     ></ClassCard>)
                 }
