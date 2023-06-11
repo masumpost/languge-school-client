@@ -7,7 +7,7 @@ const PopularTeacher = () => {
     const [teachers, setTeachers] = useState([]);
 
     useEffect(() => {
-        fetch('teachers.json')
+        fetch('http://localhost:5000/teachers')
             .then(res => res.json())
             .then(data => setTeachers(data))
     }, [])
@@ -18,7 +18,7 @@ const PopularTeacher = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
                 {
                     teachers.slice(0,6).map(teacher => <TeachersCard
-                        key={teacher.id}
+                        key={teacher._id}
                         teacher={teacher}
                     ></TeachersCard>)
                 }
