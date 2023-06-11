@@ -6,12 +6,15 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import SocialLogin from "../Shared/socialLogin/SocialLogin";
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const {createUser , updateUserProfile} = useContext(AuthContext);
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
     const [cVisible, setCVisible] = useState(false);
+    // const [password , setPassword] = useState('');
+    // const [cPassword, setCPassword] = useState('');
 
     const onSubmit = data => {
         console.log(data)
@@ -71,6 +74,7 @@ const Register = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input
+                                    // onChange={(e) => setPassword(e.target.value)}
                                     type={visible ? 'text' : 'password'} 
                                     {...register("password", {
                                     required: true,
@@ -91,7 +95,13 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type={cVisible ?"text" :"password"} placeholder="password" className="input input-bordered" />
+                                <input
+                                // onChange={(e) => setCPassword(e.target.value)}
+                                type={cVisible ?"text" :"password"}
+                                 placeholder="password" className="input input-bordered" />
+                                 <div>
+                                 {/* {password != cPassword ? <p className="text-red-600 my-2">Password did not match</p> : ''} */}
+                                 </div>
                                 <div onClick={()=> setCVisible(!cVisible)} className="pt-12 absolute right-10">
                                     {visible? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
                                 </div>
@@ -102,16 +112,12 @@ const Register = () => {
                                 </label>
                                 <input type="text" placeholder="Photo URL" className="input input-bordered" {...register("photoURL")} />
                             </div>
-                            {/* <div className="form-control mt-2">
-                            <label className="label">
-                                    <span className="label-text">Photo</span>
-                                </label>
-                                <input type="file" {...register("photo")} className="file-input file-input-ghost w-full max-w-xs" />
-                            </div> */}
+                            
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Register" />
                             </div>
                             <p><>Already Have An Account? <span><Link to='/login'>Login</Link></span></></p>
+                            <SocialLogin></SocialLogin>
                         </form>
                     </div>
                 </div>
