@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import ClassCard from "../../../../components/ClassCard";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const PopularClasses = () => {
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
-            .then(res => res.json())
-            .then(data => setClasses(data))
+        axios.get('http://localhost:5000/classes')
+            .then(res =>setClasses(res.data))
     }, [])
     return (
         <div className=" bg-slate-300 mb-12">

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import TeachersCard from "../../components/TeachersCard";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Instructors = () => {
     const [teachers, setTeachers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/teachers')
-            .then(res => res.json())
-            .then(data => setTeachers(data));
+        axios.get('http://localhost:5000/teachers')
+            .then(res => setTeachers(res.data));
     }, [])
     return (
         <>

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import ClassCard from "../../components/ClassCard";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const Classes = () => {
 
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
-            .then(res => res.json())
-            .then(data => setClasses(data))
+        axios.get('http://localhost:5000/classes')
+            .then(res => setClasses(res.data))
     }, [])
     return (
         <>
