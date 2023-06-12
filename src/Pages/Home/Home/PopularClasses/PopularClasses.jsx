@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
 import ClassCard from "../../../../components/ClassCard";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const PopularClasses = () => {
-    const [classes, setClasses] = useState([])
+    
 
-    useEffect(() => {
-        axios.get('https://language-school-server-eight.vercel.app/classes')
-            .then(res =>setClasses(res.data))
-    }, [])
+    const { data: classes = []} = useQuery(['users'], async () => {
+        const res = await fetch('https://language-school-server-eight.vercel.app/classes')
+        return res.json();
+    });
+
     return (
         <div className=" bg-slate-300 mb-12">
             <h2 className="text-4xl text-blue text-center font-bold py-4">Our Popular Classes</h2>

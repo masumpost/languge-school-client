@@ -14,6 +14,7 @@
     "axios": "^1.4.0",
     "firebase": "^9.22.2",
     "framer-motion": "^10.12.16",
+    "jsonwebtoken": "^9.0.0",
     "keen-slider": "^6.8.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
