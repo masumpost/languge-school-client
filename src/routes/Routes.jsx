@@ -8,11 +8,13 @@ import PrivateRoute from "../providers/PrivateRoute";
 import Instructors from "../Pages/Instructros/Instructors";
 import Classes from "../Pages/Classes/Classes";
 import EnrolledClass from "../components/EnrolledClass";
+import ErrorPage from "../components/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
