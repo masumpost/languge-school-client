@@ -1,7 +1,7 @@
 
 # Language School
 
-![Logo](schoollogo.png)
+![Logo](https://i.ibb.co/yYNpSKM/schoollogo.png)
 
 ## This is one of the best online school for learing Language.
 
@@ -45,6 +45,8 @@
 ## Demo
 
 Insert gif or link to demo
+
+
 
 
 
