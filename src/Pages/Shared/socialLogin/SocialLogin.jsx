@@ -18,7 +18,7 @@ const SocialLogin = () => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-                fetch('http://localhost:5000/users', {
+                fetch('https://language-school-server-eight.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -37,8 +37,8 @@ const SocialLogin = () => {
         <div>
             <div className="divider"></div>
             <div className="text-center">
-                <button onClick={handelGoogleLoggedIn} className="btn btn-circle btn-outline">
-                    <FaGoogle></FaGoogle>
+                <button onClick={handelGoogleLoggedIn} className="btn w-full btn-primary">
+                    <FaGoogle className="text-xl"></FaGoogle>
                 </button>
             </div>
         </div>

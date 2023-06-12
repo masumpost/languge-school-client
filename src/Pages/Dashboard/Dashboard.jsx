@@ -1,7 +1,10 @@
-import { FaBars, FaBookmark, FaHome, FaRegAddressBook } from "react-icons/fa";
+import { FaBars, FaBookmark, FaHome, FaRegAddressBook, FaUsers } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+
+    const isAdmin = true;
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -17,8 +20,19 @@ const Dashboard = () => {
                     <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                         {/* Sidebar content here */}
                         <li className="text-xl font-semibold"><Link to='/'><FaHome></FaHome> Go to home</Link></li>
-                        <li className="text-xl font-semibold"><Link to='/dashboard/enrolledClass'><FaRegAddressBook></FaRegAddressBook> Enrolled Class</Link></li>
-                        <li className="text-xl font-semibold"><Link><FaBookmark></FaBookmark> Selected Class</Link></li>
+                        {
+                            isAdmin ?
+                                <>
+                                    <li className="text-xl font-semibold"><Link to='/dashboard/allclass'><FaRegAddressBook></FaRegAddressBook>Manage Classes</Link></li>
+                                    <li className="text-xl font-semibold"><Link to='/dashboard/alluser'><FaUsers></FaUsers>All users</Link></li>
+                                </>
+                                :
+                                <>
+                                    <li className="text-xl font-semibold"><Link to='/dashboard/enrolledClass'><FaRegAddressBook></FaRegAddressBook> Enrolled Class</Link></li>
+                                    <li className="text-xl font-semibold"><Link><FaBookmark></FaBookmark> Selected Class</Link></li>
+                                </>
+                        }
+
                     </ul>
 
                 </div>

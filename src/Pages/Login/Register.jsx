@@ -9,7 +9,7 @@ import { useState } from "react";
 import SocialLogin from "../Shared/socialLogin/SocialLogin";
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {createUser , updateUserProfile} = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
     const [cVisible, setCVisible] = useState(false);
@@ -19,27 +19,42 @@ const Register = () => {
     const onSubmit = data => {
         console.log(data)
         createUser(data.email, data.password)
-        .then(result => {
-            const loggedUser = result.user
-            console.log(loggedUser)
-            updateUserProfile(data.name, data.photoURL)
-            .then(() => {
-                console.log('user profile updated')
-                reset();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'User created successfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-                  navigate('/')
+            .then(result => {
+                const loggedUser = result.user
+                console.log(loggedUser)
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        const saveUser = {name: data.name, email: data.email}
+                            fetch('https://language-school-server-eight.vercel.app/users', {
+
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(saveUser)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    if (data.insertedId) {
+                                        reset();
+                                        Swal.fire({
+                                            position: 'top-end',
+                                            icon: 'success',
+                                            title: 'User created successfully',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                        navigate('/')
+                                    }
+                                })
+
+
+                    })
+                    .catch(error => console.log(error))
+
             })
-            .catch(error => console.log(error))
-            
-        })
-        .catch(error => {console.log(error)})
-    
+            .catch(error => { console.log(error) })
+
     };
 
     return (
@@ -60,7 +75,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" placeholder="name" className="input input-bordered" {...register("name")}/>
+                                <input type="text" placeholder="name" className="input input-bordered" {...register("name")} />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -75,20 +90,21 @@ const Register = () => {
                                 </label>
                                 <input
                                     // onChange={(e) => setPassword(e.target.value)}
-                                    type={visible ? 'text' : 'password'} 
+                                    type={visible ? 'text' : 'password'}
                                     {...register("password", {
-                                    required: true,
-                                    minLength: 6,
-                                    maxLength: 20,
-                                    pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/})} 
-                                placeholder="password" className="input input-bordered" />
-                              
+                                        required: true,
+                                        minLength: 6,
+                                        maxLength: 20,
+                                        pattern: /(?=.*[!@#$%^&*])(?=.*[A-Z])/
+                                    })}
+                                    placeholder="password" className="input input-bordered" />
+
                                 {errors.password?.type === 'required' && <p className="text-red-600 my-2">Password is required</p>}
                                 {errors.password?.type === 'minLength' && <p className="text-red-600 my-2">Password must be 6 character</p>}
                                 {errors.password?.type === 'maxLength' && <p className="text-red-600 my-2">Password must not be 20 character</p>}
                                 {errors.password?.type === 'pattern' && <p className="text-red-600 my-2">Password must have one uppercase and one special character</p>}
-                                <div onClick={()=> setVisible(!visible)} className="pt-12 absolute right-10">
-                                    {visible? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
+                                <div onClick={() => setVisible(!visible)} className="pt-12 absolute right-10">
+                                    {visible ? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
                                 </div>
                             </div>
                             <div className="form-control">
@@ -96,14 +112,14 @@ const Register = () => {
                                     <span className="label-text">Confirm Password</span>
                                 </label>
                                 <input
-                                // onChange={(e) => setCPassword(e.target.value)}
-                                type={cVisible ?"text" :"password"}
-                                 placeholder="password" className="input input-bordered" />
-                                 <div>
-                                 {/* {password != cPassword ? <p className="text-red-600 my-2">Password did not match</p> : ''} */}
-                                 </div>
-                                <div onClick={()=> setCVisible(!cVisible)} className="pt-12 absolute right-10">
-                                    {visible? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
+                                    // onChange={(e) => setCPassword(e.target.value)}
+                                    type={cVisible ? "text" : "password"}
+                                    placeholder="password" className="input input-bordered" />
+                                <div>
+                                    {/* {password != cPassword ? <p className="text-red-600 my-2">Password did not match</p> : ''} */}
+                                </div>
+                                <div onClick={() => setCVisible(!cVisible)} className="pt-12 absolute right-10">
+                                    {visible ? <FaRegEye></FaRegEye> : <FaRegEyeSlash> </FaRegEyeSlash>}
                                 </div>
                             </div>
                             <div className="form-control">
@@ -112,7 +128,7 @@ const Register = () => {
                                 </label>
                                 <input type="text" placeholder="Photo URL" className="input input-bordered" {...register("photoURL")} />
                             </div>
-                            
+
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Register" />
                             </div>

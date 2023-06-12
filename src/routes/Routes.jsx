@@ -9,12 +9,14 @@ import Instructors from "../Pages/Instructros/Instructors";
 import Classes from "../Pages/Classes/Classes";
 import EnrolledClass from "../components/EnrolledClass";
 import ErrorPage from "../components/ErrorPage";
+import Allclasses from "../components/Dashboard/Allclasses";
+import Allusers from "../components/Dashboard/Allusers";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -41,10 +43,18 @@ export const router = createBrowserRouter([
     {
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-        children:[
+        children: [
             {
-                path:'enrolledClass',
-                element:<EnrolledClass></EnrolledClass>
+                path: 'enrolledClass',
+                element: <EnrolledClass></EnrolledClass>
+            },
+            {
+                path: 'allclass',
+                element: <Allclasses></Allclasses>
+            },
+            {
+                path: 'alluser',
+                element: <Allusers></Allusers>
             }
         ]
     }
