@@ -7,36 +7,43 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import PrivateRoute from "../providers/PrivateRoute";
 import Instructors from "../Pages/Instructros/Instructors";
 import Classes from "../Pages/Classes/Classes";
+import EnrolledClass from "../components/EnrolledClass";
 
 export const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Main></Main>,
-      children:[
-        {
-            path:'/',
-            element:<Home></Home>
-        },
-        {
-            path:'/login',
-            element:<Login></Login>
-        },
-        {
-            path:'/register',
-            element:<Register></Register>
-        },
-        {
-            path:'/dashboard',
-            element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
-        },
-        {
-            path:'/instructors',
-            element:<Instructors></Instructors>
-        },
-        {
-            path:'/classes',
-            element:<Classes></Classes>
-        }
-      ]
+        path: "/",
+        element: <Main></Main>,
+        children: [
+            {
+                path: '/',
+                element: <Home></Home>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
+            },
+            {
+                path: '/instructors',
+                element: <Instructors></Instructors>
+            },
+            {
+                path: '/classes',
+                element: <Classes></Classes>
+            }
+        ]
     },
-  ]);
+    {
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children:[
+            {
+                path:'enrolledClass',
+                element:<EnrolledClass></EnrolledClass>
+            }
+        ]
+    }
+]);
