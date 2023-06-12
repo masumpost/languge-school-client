@@ -44,12 +44,12 @@
 
 ## Demo
 
-Insert gif or link to demo
+https://language-school-7ef28.web.app
 
 
 
 
 
-## Screenshots
+## Live site view
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://i.ibb.co/rtfsFnT/school.png)

@@ -8,7 +8,7 @@ const Classes = () => {
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/classes')
+        axios.get('https://language-school-server-eight.vercel.app/classes')
             .then(res => setClasses(res.data))
     }, [])
     return (

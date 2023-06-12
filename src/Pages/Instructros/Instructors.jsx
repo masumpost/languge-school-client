@@ -7,7 +7,7 @@ const Instructors = () => {
     const [teachers, setTeachers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/teachers')
+        axios.get('https://language-school-server-eight.vercel.app/teachers')
             .then(res => setTeachers(res.data));
     }, [])
     return (
